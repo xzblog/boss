@@ -12,11 +12,12 @@ const store = createStore(amount,compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
-function render(){
+
     ReactDOM.render(
-        <App store = {store} />,
+        (<Provider store = {store}>
+            <App />
+        </Provider>),
+        
         document.getElementById('root')
     );
-}
-render();
-store.subscribe(render);
+
