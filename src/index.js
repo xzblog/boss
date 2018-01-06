@@ -3,21 +3,18 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 
-import Activity from './Activity';
-import Project from './Project';
-import Person from './Person';
+import reducers from './reducer';
+import './config';
+import './static/css/common.scss';
 
-import {amount} from './reduce';
-import './index.css';
-import App from './App';
+import Login from './views/login/login';
+import Register from './views/register/register';
 
-// 404
-const  NoFound = () =>{
-    <div>404</div>
-}
-const store = createStore(amount,compose(
+
+
+const store = createStore(reducers,compose(
     applyMiddleware(thunk),
     window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
@@ -25,13 +22,10 @@ const store = createStore(amount,compose(
 ReactDOM.render(
     (<Provider store = {store}>
         <BrowserRouter>
-            <Switch>
-                <Route exact path='/' component={App}/>
-                <Route path='/activity' component={Activity}/>
-                <Route path='/project/:id' component={Project}/>
-                <Route path='/person' component={Person}/>
-                <Redirect path='/404' component={NoFound}/>
-            </Switch>
+            <div>
+                <Route path='/login' component={Login}/>
+                <Route path='/register' component={Register}/>
+            </div>
         </BrowserRouter>
     </Provider>),
 
