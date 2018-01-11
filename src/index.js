@@ -11,6 +11,7 @@ import './static/css/common.scss';
 
 import Login from './views/login/login';
 import Register from './views/register/register';
+import Auth from './components/auth/auth';
 
 
 
@@ -23,6 +24,7 @@ ReactDOM.render(
     (<Provider store = {store}>
         <BrowserRouter>
             <div>
+                <Auth> </Auth>
                 <Route path='/login' component={Login}/>
                 <Route path='/register' component={Register}/>
             </div>
