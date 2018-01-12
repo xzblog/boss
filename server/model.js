@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 const models = {
     user:{
-        userName: {
+        phone: {
             type: String,
             require: true
         },

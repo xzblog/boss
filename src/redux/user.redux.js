@@ -1,12 +1,13 @@
 import axios from 'axios';
+import T from "../tool";
 //reducer
 
-const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const AUTH_SUCCESS = 'REGISTER_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 
 const initState = {
     isAuth: false,
+    redirectTo:'',
     msg:'',
     phone:'',
     password:'',
@@ -15,12 +16,10 @@ const initState = {
 
 export function user(state =initState, action) {
     switch (action.type){
-        case REGISTER_SUCCESS:
-            return {...state, msg:action.msg, isAuth:true, ...action.payload};
-        case LOGIN_SUCCESS:
-            return {...state,isAuth:true, ...action.payload};
+        case AUTH_SUCCESS:
+            return {...state, ...action.payload, redirectTo:T.getRedirectPath(action.payload), msg:action.payload.msg, isAuth:true };
         case ERROR_MSG:
-            return {...state, msg:action.msg, isAuth:false};
+            return {...state, msg:action.msg};
         default:
             return state
     }
@@ -32,11 +31,11 @@ function errorMsg(msg) {
     return {msg, type:ERROR_MSG}
 }
 
-function registerSuccess(data, msg) {
-    return {type:REGISTER_SUCCESS, payload: data, msg}
+function registerSuccess(data) {
+    return {type:AUTH_SUCCESS, payload: data}
 }
 function loginSuccess(data) {
-    return {type:LOGIN_SUCCESS, payload:data}
+    return {type:AUTH_SUCCESS, payload:data}
 }
 
 
@@ -54,7 +53,7 @@ export function register(obj) {
     return dispatch =>{
         axios.post('/user/register', {phone,password,userType}).then(res=>{
             if(res.status === 200 && res.data.code ===0){
-                dispatch(registerSuccess({phone,password,userType},res.data.msg))
+                dispatch(registerSuccess(res.data))
             }else{
                 dispatch(errorMsg(res.data.msg))
             }

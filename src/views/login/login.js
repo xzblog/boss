@@ -2,7 +2,8 @@ import  React, {Component} from 'react';
 import { WingBlank, WhiteSpace, InputItem, Button, Toast } from 'antd-mobile';
 import {connect} from 'react-redux';
 
-import {login} from '../../redux/user.redux';
+import {login} from '../../redux/user.redux'
+import T from '../../tool';
 
 import LogoImg from '../../static/imgs/logo.svg';
 
@@ -27,7 +28,7 @@ class Login extends Component{
     };
 
     onChange = (value) => {
-        if (value.replace(/\s/g, '').length < 11) {
+        if (T.delSpace(value).length < 11) {
             this.setState({
                 hasError: true,
             });
@@ -37,7 +38,7 @@ class Login extends Component{
             });
         }
         this.setState({
-            phone:value,
+            phone:T.delSpace(value),
         });
     };
 

@@ -12,6 +12,9 @@
 #webstrom
 /.idea
 
+#mongoose
+/db
+
 # misc
 .DS_Store
 .env.local

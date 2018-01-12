@@ -1,7 +1,7 @@
 import  React, {Component} from 'react';
 import { WingBlank, WhiteSpace, InputItem, Button, Radio } from 'antd-mobile';
 import {connect} from 'react-redux';
-
+import {Redirect} from 'react-router-dom';
 import {register} from '../../redux/user.redux';
 
 import LogoImg from '../../static/imgs/logo.svg';
@@ -15,10 +15,10 @@ class Register extends Component{
     constructor(props){
         super(props);
         this.state = {
-            userName: '',
+            phone: '',
             password: '',
             rPassword:'',
-            userType: 'seeker'
+            userType: 'genius'
         }
     }
 
@@ -36,12 +36,13 @@ class Register extends Component{
     render(){
         return(
             <div>
+                {this.props.redirectTo ? <Redirect to= {this.props.redirectTo} /> : null}
                 <div className="logo">
                     <img className='app-logo' src={LogoImg} alt="logo"/>
                 </div>
                 <WingBlank>
                     {this.props.msg?<p>{this.props.msg}</p>: null }
-                    <InputItem onChange={v=>{this.handleChange('userName',v)}}>用户名</InputItem>
+                    <InputItem onChange={v=>{this.handleChange('phone',v)}}>用户名</InputItem>
                     <InputItem
                         type='password'
                         onChange={v=>{this.handleChange('password',v)}}
@@ -52,8 +53,8 @@ class Register extends Component{
                     >重复密码</InputItem>
 
                     <Radio.RadioItem
-                        checked={this.state.userType === 'seeker'}
-                        onClick={()=>{this.handleChange('userType','seeker')}}
+                        checked={this.state.userType === 'genius'}
+                        onClick={()=>{this.handleChange('userType','genius')}}
                     >我要求职</Radio.RadioItem>
                     <Radio.RadioItem
                         checked={this.state.userType === 'boss'}

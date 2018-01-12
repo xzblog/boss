@@ -24,7 +24,7 @@ class Auth extends Component{
         });
     }
     render(){
-        return <p>sdd</p>
+        return <p style={{display:'none'}}>sdd</p>
     }
 }
 

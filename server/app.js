@@ -1,8 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
 const User =require('./user');
+
 
 //创建app应用
 const app = express();
@@ -10,10 +12,14 @@ const app = express();
 //设置post请求
 app.use(bodyParser.json());
 
+//设置cookie
+app.use(cookieParser());
+
+
 // 用户信息路由
 app.use('/user',User);
 
-app.get('/api/', function (req, res) {
+app.get('/', function (req, res) {
     res.send('Hello World!');
 });
 
