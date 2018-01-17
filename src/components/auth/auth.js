@@ -1,3 +1,8 @@
+/*
+ * 判断用户是否登录
+ * @author magical
+ */
+
 import React, {Component} from 'react';
 import axios from 'axios';
 import { withRouter} from 'react-router-dom';
@@ -6,6 +11,7 @@ import { withRouter} from 'react-router-dom';
 
 class Auth extends Component{
     componentDidMount(){
+        //排除登录，注册页
         const publicPath = ['/login','/register'];
         const pathname = this.props.location.pathname;
 
@@ -14,7 +20,6 @@ class Auth extends Component{
         }
         axios.get('/user/info').then((res)=>{
             if(res.status === 200){
-                console.log(res);
                 if(res.data.code === 0){
                     //用户信息存在
                 }else{

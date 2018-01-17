@@ -7,7 +7,7 @@
 class Tool {
 
     /**
-     * 字符串去空格
+     * 去空格
      * @param str
      */
     delSpace = (str) => {
