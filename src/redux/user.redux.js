@@ -6,7 +6,6 @@ const AUTH_SUCCESS = 'REGISTER_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 
 const initState = {
-    isAuth: false,
     redirectTo:'',
     msg:'',
     phone:'',
@@ -17,7 +16,7 @@ const initState = {
 export function user(state =initState, action) {
     switch (action.type){
         case AUTH_SUCCESS:
-            return {...state, ...action.payload, redirectTo:T.getRedirectPath(action.payload), msg:action.payload.msg, isAuth:true };
+            return {...state, ...action.payload, redirectTo:T.getRedirectPath(action.payload.data), msg:action.payload.msg};
         case ERROR_MSG:
             return {...state, msg:action.msg};
         default:

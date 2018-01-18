@@ -1,4 +1,7 @@
 @import "animation";
+html{
+    font-size: 0.14rem;
+}
 
 .app-logo {
     animation: rotate infinite 20s linear;

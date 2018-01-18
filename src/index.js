@@ -9,9 +9,11 @@ import reducers from './reducer';
 import './config';
 import './static/css/common.scss';
 
-import Login from './views/login/login';
-import Register from './views/register/register';
-import Auth from './components/auth/auth';
+import Login from './views/login/login';                   //登录
+import Register from './views/register/register';          //注册
+import Auth from './components/auth/auth';                 //判断登录页面
+import BossInfo from './views/bossinfo/bossinfo';          //boss完善信息
+import GeniusInfo from './views/geniusinfo/geniusinfo';    //boss完善信息
 
 
 
@@ -27,6 +29,8 @@ ReactDOM.render(
                 <Auth> </Auth>
                 <Route path='/login' component={Login}/>
                 <Route path='/register' component={Register}/>
+                <Route path='/geniusinfo' component={GeniusInfo}/>
+                <Route path='/bossinfo' component={BossInfo}/>
             </div>
         </BrowserRouter>
     </Provider>),

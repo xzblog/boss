@@ -14,7 +14,6 @@ const encrypt = function (pwd) {
 
 //登录
 Router.post('/login', function (req,res) {
-    console.log('Cookies: ', req.cookies)
     //拿到用户的用户名和密码
     const {phone, password} = req.body;
     User.findOne({
