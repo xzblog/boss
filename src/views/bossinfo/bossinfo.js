@@ -4,11 +4,34 @@
  */
 
 import React, {Component} from 'react';
-import {NavBar, Icon, List, InputItem, Picker, Result, Button, WingBlank, WhiteSpace } from 'antd-mobile';
+import {connect} from 'react-redux';
 
+import {NavBar, Icon, InputItem, Result, Button, WingBlank, WhiteSpace } from 'antd-mobile';
+import {update} from "../../redux/user.redux";
 
 const myImg = src => <img src={src} className="spe am-icon" style={{width:'0.6rem', height:'0.6rem'}} alt="" />;
+@connect(
+    state => state.user,
+    {update}
+)
 export default class BossInfo extends Component{
+    state = {
+        userName: '',
+        company:'',
+        profession:'',
+        email:''
+    };
+
+    handleChange(key,value){
+        this.setState({
+            [key] : value
+        })
+    }
+
+    handleClick = () =>{
+        this.props.update(this.state);
+    }
+
     render(){
         return(
             <div>
@@ -24,25 +47,30 @@ export default class BossInfo extends Component{
                 />
                 <InputItem
                     placeholder="请填写本人的真实姓名"
+                    onChange ={(v)=>{this.handleChange("userName",v)}}
                 >姓名</InputItem>
                 <WhiteSpace siza="md"/>
                 <InputItem
                     placeholder="您当前就职的公司"
+                    onChange ={(v)=>{this.handleChange("company",v)}}
                 >我得公司</InputItem>
 
                 <WhiteSpace siza="md"/>
                 <InputItem
                     placeholder="您当前的职务"
+                    onChange ={(v)=>{this.handleChange("profession",v)}}
                 >我得职务</InputItem>
                 <InputItem
+                    type='email'
                     placeholder="邮箱，用来接收简历"
+                    onChange ={(v)=>{this.handleChange("email",v)}}
                 >我得邮箱</InputItem>
 
                 <WhiteSpace siza="lg"/>
                 <WhiteSpace siza="lg"/>
 
                 <WingBlank size="sm">
-                    <Button>完成</Button>
+                    <Button onClick={this.handleClick}>完成</Button>
                 </WingBlank>
             </div>
         )

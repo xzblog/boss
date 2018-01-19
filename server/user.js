@@ -11,6 +11,38 @@ const encrypt = function (pwd) {
     return utils.md5(utils.md5(str + pwd));
 };
 
+//查询用户信息是过滤password 和__v
+const _filter = {password:0, __v:0};
+
+//完善用户信息
+Router.post('/update', function (req, res) {
+    const {...data} = req.body;
+    const {userId} = req.cookies;
+    User.findOneAndUpdate(
+        userId,
+        data
+    ).then((info) => {
+        console.log(info);
+        if(!info){
+            res.json({
+                code: 6,
+                msg:'更新用户信息失败'
+            });
+            return false
+        }
+        const dataInfo = Object.assign({},{
+            _id: info._id,
+            phone: info.phone,
+            userType: info.userType
+        },data);
+        res.json({
+            code: 0,
+            msg:'更新成功',
+            data: dataInfo
+        });
+    })
+});
+
 
 //登录
 Router.post('/login', function (req,res) {
@@ -19,7 +51,7 @@ Router.post('/login', function (req,res) {
     User.findOne({
         phone,
         password: encrypt(password)
-    }).then((info)=>{
+    }, _filter).then((info)=>{
         if(!info){
             res.json({
                 code: 3,
@@ -27,12 +59,12 @@ Router.post('/login', function (req,res) {
             });
             return false
         }
-        const {phone, userType, _id} = info;
+        const { _id,} = info;
         res.cookie('userId', _id);
         res.json({
             code: 0,
             msg:'登录成功',
-            data:  {phone, userType, _id}
+            data:  info
         });
     })
 });
@@ -64,11 +96,12 @@ Router.post('/register', function (req,res) {
             return false;
         }
         // 保存用户信息
-        return User.create({   //return出去是让他可以用promise的形式拿保存结果
+        const user = new User({
             phone,
             password: encrypt(password),
             userType
         });
+        return user.save();  //return出去是让他可以用promise的形式拿保存结果
     }).then((info,err) =>{
         if(err){
             console.log(`保存失败:${err}`);

@@ -1,6 +1,7 @@
 import  React, {Component} from 'react';
 import { WingBlank, WhiteSpace, InputItem, Button, Toast } from 'antd-mobile';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import {login} from '../../redux/user.redux'
 import T from '../../tool';
@@ -40,10 +41,6 @@ class Login extends Component{
         this.setState({
             phone:T.delSpace(value),
         });
-    };
-
-    register = () =>{
-        this.props.history.push('/register');
     };
 
     handleChange(key,value){
@@ -86,12 +83,10 @@ class Login extends Component{
                     <WhiteSpace />
                     <WhiteSpace />
                     <WhiteSpace />
-
+                    <Link style={{textAlign:'center',display:'block',color:'#666'}} to='/register'>没有账号？立即注册</Link>
+                    <WhiteSpace />
+                    <WhiteSpace />
                     <Button type='primary' onClick={this.handleSubmit.bind(this)}>登录</Button>
-
-                    <WhiteSpace />
-                    <WhiteSpace />
-                    <Button onClick={this.register}>注册</Button>
                 </WingBlank>
             </div>
 

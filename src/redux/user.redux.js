@@ -9,14 +9,13 @@ const initState = {
     redirectTo:'',
     msg:'',
     phone:'',
-    password:'',
     userType:''
 };
 
 export function user(state =initState, action) {
     switch (action.type){
         case AUTH_SUCCESS:
-            return {...state, ...action.payload, redirectTo:T.getRedirectPath(action.payload.data), msg:action.payload.msg};
+            return {...state, ...action.payload.data, redirectTo:T.getRedirectPath(action.payload.data), msg:action.payload.msg};
         case ERROR_MSG:
             return {...state, msg:action.msg};
         default:
@@ -25,19 +24,29 @@ export function user(state =initState, action) {
 }
 
 // action
-
+// 失败之后的操作
 function errorMsg(msg) {
     return {msg, type:ERROR_MSG}
 }
-
-function registerSuccess(data) {
+// 成功之后操作
+function handleSuccess(data) {
     return {type:AUTH_SUCCESS, payload: data}
 }
-function loginSuccess(data) {
-    return {type:AUTH_SUCCESS, payload:data}
+
+
+
+//更新
+export function update(obj) {
+    return dispatch => {
+        axios.post('/user/update', obj).then( res => {
+            if(res.status === 200 && res.data.code === 0){
+                dispatch(handleSuccess(res.data));
+            }else {
+                dispatch(errorMsg(res.data.msg));
+            }
+        })
+    }
 }
-
-
 
 
 //注册
@@ -52,7 +61,7 @@ export function register(obj) {
     return dispatch =>{
         axios.post('/user/register', {phone,password,userType}).then(res=>{
             if(res.status === 200 && res.data.code ===0){
-                dispatch(registerSuccess(res.data))
+                dispatch(handleSuccess(res.data))
             }else{
                 dispatch(errorMsg(res.data.msg))
             }
@@ -69,9 +78,9 @@ export function login(obj) {
     return dispatch =>{
         axios.post('/user/login',{phone, password}).then( res =>{
             if(res.status ===200 && res.data.code === 0){
-                dispatch(loginSuccess(res.data));
+                dispatch(handleSuccess(res.data));
             }else{
-                dispatch(errorMsg(res.data.msg))
+                dispatch(errorMsg(res.data.msg));
             }
         })
     }
