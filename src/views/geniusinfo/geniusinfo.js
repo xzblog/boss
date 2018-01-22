@@ -7,7 +7,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {update} from "../../redux/user.redux";
 import {Redirect} from 'react-router-dom';
-import {NavBar, Icon, List, InputItem, Picker, Result, Button, WingBlank, WhiteSpace, TextareaItem } from 'antd-mobile';
+import {NavBar, List, InputItem, Picker, Result, Button, WingBlank, WhiteSpace, TextareaItem } from 'antd-mobile';
 
 const seasons = [
     [

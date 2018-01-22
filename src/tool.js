@@ -21,7 +21,7 @@ class Tool {
      * @returns {string}
      */
     getRedirectPath = ({userType, userName}) => {
-        let url = (userType === 'boss')? 'boss' : 'genius';
+        let url = (userType === 'boss')? '/boss' : '/genius';
         if(!userName){
             url += 'info';
         }

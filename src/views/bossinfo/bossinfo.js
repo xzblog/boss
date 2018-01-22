@@ -7,7 +7,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
-import {NavBar, Icon, InputItem, Result, Button, WingBlank, WhiteSpace } from 'antd-mobile';
+import {NavBar, InputItem, Result, Button, WingBlank, WhiteSpace } from 'antd-mobile';
 import {update} from "../../redux/user.redux";
 
 const myImg = src => <img src={src} className="spe am-icon" style={{width:'0.6rem', height:'0.6rem'}} alt="" />;
@@ -36,6 +36,7 @@ export default class BossInfo extends Component{
     render(){
         const path = this.props.location.pathname;
         const redirect = this.props.redirectTo;
+        console.log(redirect);
         return(
             <div>
                 {redirect&&redirect!==path? <Redirect to={this.props.redirectTo}></Redirect> :null}
