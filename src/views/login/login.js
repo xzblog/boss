@@ -1,7 +1,7 @@
 import  React, {Component} from 'react';
 import { WingBlank, WhiteSpace, InputItem, Button, Toast } from 'antd-mobile';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 
 import {login} from '../../redux/user.redux'
 import T from '../../tool';
@@ -56,8 +56,11 @@ class Login extends Component{
     }
 
     render(){
+        const path = this.props.location.pathname;
+        const redirect = this.props.redirectTo;
         return(
             <div>
+                {redirect&&redirect!==path? <Redirect to={this.props.redirectTo}></Redirect> :null}
                 <div className="logo">
                     <img className='app-logo' src={LogoImg} alt="logo"/>
                 </div>

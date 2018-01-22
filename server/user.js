@@ -18,7 +18,8 @@ const _filter = {password:0, __v:0};
 Router.post('/update', function (req, res) {
     const {...data} = req.body;
     const {userId} = req.cookies;
-    User.findOneAndUpdate(
+    console.log(userId);
+    User.findByIdAndUpdate(
         userId,
         data
     ).then((info) => {
@@ -38,6 +39,7 @@ Router.post('/update', function (req, res) {
         res.json({
             code: 0,
             msg:'更新成功',
+            url: info.userType === 'boss' ? '/boss' : 'genius',
             data: dataInfo
         });
     })

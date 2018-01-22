@@ -20,9 +20,9 @@ class Tool {
      * @param avatar
      * @returns {string}
      */
-    getRedirectPath = ({userType, avatar}) => {
+    getRedirectPath = ({userType, userName}) => {
         let url = (userType === 'boss')? 'boss' : 'genius';
-        if(!avatar){
+        if(!userName){
             url += 'info';
         }
         return url

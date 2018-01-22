@@ -5,6 +5,7 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 
 import {NavBar, Icon, InputItem, Result, Button, WingBlank, WhiteSpace } from 'antd-mobile';
 import {update} from "../../redux/user.redux";
@@ -33,12 +34,13 @@ export default class BossInfo extends Component{
     }
 
     render(){
+        const path = this.props.location.pathname;
+        const redirect = this.props.redirectTo;
         return(
             <div>
+                {redirect&&redirect!==path? <Redirect to={this.props.redirectTo}></Redirect> :null}
                 <NavBar
                     mode="light"
-                    icon={<Icon type="left" />}
-                    onLeftClick={() => console.log('onLeftClick')}
                 >完善boos信息</NavBar>
                 <WhiteSpace size="sm" />
                 <Result

@@ -44,6 +44,18 @@ const models = {
         },
 
         // 个人专属
+        // 性别
+        sex: {
+            type: String,
+        },
+        //工作时长
+        workDate: {
+            type: Array,
+        },
+        //出生年月
+        birth: {
+            type: Array,
+        },
         //个人简介
         desc: {
             type: String,

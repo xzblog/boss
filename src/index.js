@@ -14,7 +14,9 @@ import Login from './views/login/login';                   //登录
 import Register from './views/register/register';          //注册
 import Auth from './components/auth/auth';                 //判断登录页面
 import BossInfo from './views/bossinfo/bossinfo';          //boss完善信息
-import GeniusInfo from './views/geniusinfo/geniusinfo';    //boss完善信息
+import GeniusInfo from './views/geniusinfo/geniusinfo';    //牛人完善信息
+// import Boss from './views/boss/boss';          //boss页面
+import Genius from './views/genius/genius';        //牛人页面
 
 
 
@@ -33,6 +35,7 @@ ReactDOM.render(
                 <Route path='/register' component={Register}/>
                 <Route path='/geniusinfo' component={GeniusInfo}/>
                 <Route path='/bossinfo' component={BossInfo}/>
+                <Route path='/genius' component={Genius}/>
             </div>
         </BrowserRouter>
     </Provider>),
