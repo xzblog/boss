@@ -4,11 +4,16 @@
  */
 
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
 import { withRouter} from 'react-router-dom';
+import {loadData} from '../../redux/user.redux';
 
 @withRouter
-
+@connect(
+    null,
+    {loadData}
+)
 class Auth extends Component{
     componentDidMount(){
         //排除登录，注册页
@@ -21,7 +26,7 @@ class Auth extends Component{
         axios.get('/user/info').then((res)=>{
             if(res.status === 200){
                 if(res.data.code === 0){
-                    //用户信息存在
+                    this.props.loadData(res.data.data)
                 }else{
                     this.props.history.push('/login');
                 }

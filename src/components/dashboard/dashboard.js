@@ -22,9 +22,9 @@ export default class Dashboard extends Component{
     render(){
         const {pathname} = this.props.location;
         const navList = [{
-            component:Genius, url:'/genius',  icon:'home', text:'人才', hide: this.props.user.userType === 'boss'
+            component:Genius, url:'/genius',  icon:'home', text:'职位', hide: this.props.user.userType === 'boss'
         },{
-            component:Boss, url:'/boss',  icon:'home', text:'职位', hide: this.props.user.userType === 'genius'
+            component:Boss, url:'/boss',  icon:'home', text:'人才', hide: this.props.user.userType === 'genius'
         },{
             component:News, url:'/news', icon:'invest', text:'资讯'
         },{

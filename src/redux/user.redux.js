@@ -4,6 +4,7 @@ import T from "../tool";
 
 const AUTH_SUCCESS = 'REGISTER_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
+const LOAD_DATA = 'LOAD_DATA';
 
 const initState = {
     redirectTo:'',
@@ -18,6 +19,8 @@ export function user(state =initState, action) {
             return {...state, ...action.payload.data, redirectTo:T.getRedirectPath(action.payload.data), msg:action.payload.msg};
         case ERROR_MSG:
             return {...state, msg:action.msg};
+        case LOAD_DATA:
+            return {...state, ...action.payload};
         default:
             return state
     }
@@ -32,7 +35,10 @@ function errorMsg(msg) {
 function handleSuccess(data) {
     return {type:AUTH_SUCCESS, payload: data}
 }
-
+//用于查询是否登录之后设置state
+export function loadData(userinfo){
+    return { type:LOAD_DATA, payload:userinfo}
+}
 
 
 //更新
