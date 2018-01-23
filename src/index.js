@@ -16,7 +16,7 @@ import BossInfo from './views/bossinfo/bossinfo';          //boss完善信息
 import GeniusInfo from './views/geniusinfo/geniusinfo';    //牛人完善信息
 // import Boss from './views/boss/boss';          //boss页面
 // import Genius from './views/genius/genius';        //牛人页面
-import Dashboard from './views/dashboard/dashboard';
+import Dashboard from './components/dashboard/dashboard';
 
 
 

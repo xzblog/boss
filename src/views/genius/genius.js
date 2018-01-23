@@ -1,124 +1,41 @@
 import React, {Component} from 'react';
-import {TabBar} from 'antd-mobile';
+import {connect} from 'react-redux';
+import { Card, WingBlank, WhiteSpace } from 'antd-mobile';
+
+import {getList} from "../../redux/list.redux";
+
+@connect(
+    state=>state,
+    {getList}
+)
 
 export default class Genius extends Component{
-    state = {
-        selectedTab: 'redTab',
-        fullScreen: false,
-    };
-
-    renderContent = (pageText) => {
-        return (
-            <div style={{ backgroundColor: 'white', height: '100%', textAlign: 'center' }}>
-               <h1 style={{marginTop:'0'}}>{pageText}页面</h1>
-            </div>
-        );
-    };
-
+    componentDidMount(){
+        this.props.getList('genius');
+    }
     render(){
+        const list = this.props.list.userList;
         return(
-            <div style={{position:'fixed',width:'100%',height:'100%',bottom:'0',left:'0'}}>
-                <TabBar
-                    unselectedTintColor="#949494"
-                    tintColor="#33A3F4"
-                    barTintColor="white"
-                >
-                    <TabBar.Item
-                        title="Life"
-                        key="Life"
-                        icon={<div style={{
-                            width: '22px',
-                            height: '22px',
-                            background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat' }}
-                        />
-                        }
-                        selectedIcon={<div style={{
-                            width: '22px',
-                            height: '22px',
-                            background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat' }}
-                        />
-                        }
-                        selected={this.state.selectedTab === 'blueTab'}
-                        badge={1}
-                        onPress={() => {
-                            this.setState({
-                                selectedTab: 'blueTab',
-                            });
-                        }}
-                        data-seed="logId"
-                    >
-                        {this.renderContent('Life')}
-                    </TabBar.Item>
-                    <TabBar.Item
-                        icon={
-                            <div style={{
-                                width: '22px',
-                                height: '22px',
-                                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat' }}
-                            />
-                        }
-                        selectedIcon={
-                            <div style={{
-                                width: '22px',
-                                height: '22px',
-                                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat' }}
-                            />
-                        }
-                        title="Koubei"
-                        key="Koubei"
-                        badge={'new'}
-                        selected={this.state.selectedTab === 'redTab'}
-                        onPress={() => {
-                            this.setState({
-                                selectedTab: 'redTab',
-                            });
-                        }}
-                        data-seed="logId1"
-                    >
-                        {this.renderContent('Koubei')}
-                    </TabBar.Item>
-                    <TabBar.Item
-                        icon={
-                            <div style={{
-                                width: '22px',
-                                height: '22px',
-                                background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat' }}
-                            />
-                        }
-                        selectedIcon={
-                            <div style={{
-                                width: '22px',
-                                height: '22px',
-                                background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat' }}
-                            />
-                        }
-                        title="Friend"
-                        key="Friend"
-                        dot
-                        selected={this.state.selectedTab === 'greenTab'}
-                        onPress={() => {
-                            this.setState({
-                                selectedTab: 'greenTab',
-                            });
-                        }}
-                    >
-                        {this.renderContent('Friend')}
-                    </TabBar.Item>
-                    <TabBar.Item
-                        icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
-                        selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
-                        title="My"
-                        key="my"
-                        selected={this.state.selectedTab === 'yellowTab'}
-                        onPress={() => {
-                            this.setState({
-                                selectedTab: 'yellowTab',
-                            });
-                        }}
-                    >
-                        {this.renderContent('My')}
-                    </TabBar.Item>
-                </TabBar>
+            <div>
+                <WingBlank size="md">
+                    <WhiteSpace size="md" />
+                    {
+                        list.length ? list.map((v, i)=>(
+                            <Card key={i}>
+                                <Card.Header
+                                    title={v.userName}
+                                    thumb="https://cloud.githubusercontent.com/assets/1698185/18039916/f025c090-6dd9-11e6-9d86-a4d48a1bf049.png"
+                                    extra={<span>前端</span>}
+                                />
+                                <Card.Body>
+                                    <div>{v.desc}</div>
+                                </Card.Body>
+                                <Card.Footer content={<span>年龄：{v.birth}</span>} extra={<div>工作经验：{v.workDate}</div>} />
+                            </Card>
+                        )):'暂无数据'
+
+                    }
+                </WingBlank>
             </div>
         )
     }

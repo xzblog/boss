@@ -14,11 +14,25 @@ const encrypt = function (pwd) {
 //查询用户信息是过滤password 和__v
 const _filter = {password:0, __v:0};
 
+//查询用户列表
+Router.get('/list', function (req, res) {
+    const {type} = req.query;
+    User.find({
+        userType: type
+    },_filter).then((doc)=>{
+        console.log(doc)
+        res.json({
+            code: 0,
+            msg:'查询成功',
+            data: doc
+        });
+    })
+});
+
 //完善用户信息
 Router.post('/update', function (req, res) {
     const {...data} = req.body;
     const {userId} = req.cookies;
-    console.log(userId);
     User.findByIdAndUpdate(
         userId,
         data
