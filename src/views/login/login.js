@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 
 import {login} from '../../redux/user.redux'
-import T from '../../tool';
+import T from '../../utils/utils';
 
 import LogoImg from '../../static/imgs/logo.svg';
 

@@ -4,7 +4,6 @@
 
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {NavBar} from 'antd-mobile';
 import {Switch, Route} from 'react-router-dom';
 
 import Navigator from '../navigator/navigator'
@@ -20,7 +19,6 @@ import Person from '../../views/person/person';
 
 export default class Dashboard extends Component{
     render(){
-        const {pathname} = this.props.location;
         const navList = [{
             component:Genius, url:'/genius',  icon:'home', text:'职位', hide: this.props.user.userType === 'boss'
         },{
@@ -35,7 +33,6 @@ export default class Dashboard extends Component{
 
         return(
             <div>
-                <NavBar  mode='light'>{navList.find(v=>v.url===pathname).text}</NavBar>
                 <div style={{marginBottom:'0.5rem'}}>
                     <Switch>
                         {navList.map((v,i)=>(

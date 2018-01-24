@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Card, WingBlank, WhiteSpace } from 'antd-mobile';
+import { Card, WingBlank, WhiteSpace, NavBar } from 'antd-mobile';
 
 import {getList} from "../../redux/list.redux";
 
@@ -17,6 +17,7 @@ export default class Genius extends Component{
         const list = this.props.list.userList;
         return(
             <div>
+                <NavBar  mode='light'>职位</NavBar>
                 <WingBlank size="md">
                     <WhiteSpace size="md" />
                     {

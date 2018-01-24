@@ -1,5 +1,5 @@
 import axios from 'axios';
-import T from "../tool";
+import T from "../utils/utils";
 //reducer
 
 const AUTH_SUCCESS = 'REGISTER_SUCCESS';

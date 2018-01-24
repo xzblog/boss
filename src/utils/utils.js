@@ -1,10 +1,10 @@
 /*
- * 工具方法 tool
+ * 工具函数集 utils
  * @Author: magical
  * @Date: 2017-11-14 15:32:24
  */
 
-class Tool {
+class Utils {
 
     /**
      * 去空格
@@ -31,4 +31,4 @@ class Tool {
 
 }
 
-export default new Tool();
+export default new Utils();

@@ -1,0 +1,112 @@
+.person{
+    background-color: #f5f9fc;
+
+    .person-top{
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.2rem 0.2rem 0.4rem;
+        .top-left{
+            width: 70%;
+            h2{
+                font-weight: 400;
+                font-size: 0.2rem;
+            }
+            .desc{
+                font-size: 0.14rem;
+                color: #999;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .redact{
+                height: 0.28rem;
+                width: 0.6rem;
+                text-align: center;
+                display: inline-block;
+                background-color: #eff3f6;
+                border-radius: 3px;
+                color: #555;
+                border: none;
+            }
+        }
+        .avator{
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            span{
+                border: 1px solid #ccc;
+                display: block;
+                width: 0.8rem;
+                height: 0.8rem;
+                border-radius: 50%;
+            }
+        }
+    }
+    .person-menu{
+        background-color: #fff;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding-bottom: 0.1rem;
+        .item{
+            text-align: center;
+            i{
+                display: inline-block;
+                width: 0.3rem;
+                height: 0.3rem;
+                background-color: #ccc;
+                border-radius: 50%;
+            }
+            p{
+                font-size: 0.12rem;
+                color: #555;
+            }
+        }
+    }
+    .person-list{
+        .item{
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            padding: 0.2rem;
+            position: relative;
+            .icon{
+                width: 0.26rem;
+                height: 0.26rem;
+                background-color: #ccc;
+                border-radius: 3px;
+            }
+            .title{
+                font-size: 0.18rem;
+                color: #333;
+                margin-left: 0.1rem;
+            }
+            .result{
+                text-align: right;
+                font-size: 0.14rem;
+                color: #999;
+                position: absolute;
+                right: 0.4rem;
+            }
+            .arrow{
+                width: 0.08rem;
+                height: 0.08rem;
+                border-right: 1px solid #ccc;
+                border-bottom: 1px solid #ccc;
+                transform: rotate(-45deg);
+                position: absolute;
+                right: 0.2rem;
+            }
+            &::after{
+                content: '';
+                width: 90%;
+                border-bottom: 1px solid #f6f6f6;
+                position: absolute;
+                bottom: 0;
+            }
+        }
+    }
+
+}

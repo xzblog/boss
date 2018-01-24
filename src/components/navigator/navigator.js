@@ -23,7 +23,7 @@ export default class Navigator extends Component{
         const menu = [];
         const {pathname} = this.props.location;
         const navList = this.props.data.filter(v=>!v.hide);
-        navList.map((nav,i) => {
+        navList.forEach((nav,i) => {
             menu.push(
                 <Link to={nav.url}
                       key={i}
