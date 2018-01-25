@@ -60,7 +60,7 @@ class Login extends Component{
         const redirect = this.props.redirectTo;
         return(
             <div>
-                {redirect&&redirect!==path? <Redirect to={this.props.redirectTo}></Redirect> :null}
+                {redirect&&redirect!==path? <Redirect to={redirect} /> :null}
                 <div className="logo">
                     <img className='app-logo' src={LogoImg} alt="logo"/>
                 </div>

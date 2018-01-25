@@ -1,9 +1,16 @@
+/*
+ * 注册
+ * @Author: magical
+ * @Data: 2018-01-25
+ */
+
 import  React, {Component} from 'react';
-import { WingBlank, WhiteSpace, InputItem, Button, Radio } from 'antd-mobile';
+import { WingBlank, WhiteSpace, InputItem, Button, Radio, Toast} from 'antd-mobile';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
 import {register} from '../../redux/user.redux';
 
+import T from "../../utils/utils";
 import LogoImg from '../../static/imgs/logo.svg';
 
 @connect(
@@ -12,53 +19,53 @@ import LogoImg from '../../static/imgs/logo.svg';
 )
 
 class Register extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            phone: '',
-            password: '',
-            rPassword:'',
-            userType: 'genius'
-        }
-    }
 
-    handleChange (key,value){
-        this.setState({
-            [key]: value
-        })
-    }
+    state = {
+        phone: '',
+        password: '',
+        userType: 'genius'
+    };
 
     handleSubmit(){
-        this.props.register(this.state)
+        const {phone, password, userType} = this.state;
+        this.props.register({
+            phone: T.delSpace(phone) ,
+            password: password,
+            userType: userType
+        })
     }
-
 
     render(){
         return(
             <div>
                 {this.props.redirectTo ? <Redirect to= {this.props.redirectTo} /> : null}
-                <div className="logo">
+                {/*{this.props.msg ? Toast.show(this.props.msg) : null}*/}
+                <Link to='/login' style={{position: 'absolute', top: '0.2rem',right: '0.2rem'}}>已有账号</Link>
+
+                <div className="logo" style={{height:'2.4rem'}}>
                     <img className='app-logo' src={LogoImg} alt="logo"/>
                 </div>
                 <WingBlank>
-                    {this.props.msg?<p>{this.props.msg}</p>: null }
-                    <InputItem onChange={v=>{this.handleChange('phone',v)}}>用户名</InputItem>
+                    <InputItem
+                        type="phone"
+                        placeholder="请输入手机号"
+                        onChange={(v)=>{this.setState({phone: v})}}
+                        clear
+                    >手机号</InputItem>
+
                     <InputItem
                         type='password'
-                        onChange={v=>{this.handleChange('password',v)}}
+                        placeholder="请设置密码"
+                        onChange={v=>{this.setState({password: v})}}
                     >密码</InputItem>
-                    <InputItem
-                        type='password'
-                        onChange={v=>{this.handleChange('rPassword',v)}}
-                    >重复密码</InputItem>
 
                     <Radio.RadioItem
                         checked={this.state.userType === 'genius'}
-                        onClick={()=>{this.handleChange('userType','genius')}}
+                        onClick={()=>{this.setState({userType: 'genius'})}}
                     >我要求职</Radio.RadioItem>
                     <Radio.RadioItem
                         checked={this.state.userType === 'boss'}
-                        onClick={()=>{this.handleChange('userType','boss')}}
+                        onClick={()=>{this.setState({userType: 'boss'})}}
                     >我要招聘</Radio.RadioItem>
 
                     <WhiteSpace/>

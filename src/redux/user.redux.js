@@ -5,6 +5,7 @@ import T from "../utils/utils";
 const AUTH_SUCCESS = 'REGISTER_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 const LOAD_DATA = 'LOAD_DATA';
+const LOGOUT = 'LOGOUT';
 
 const initState = {
     redirectTo:'',
@@ -21,6 +22,8 @@ export function user(state =initState, action) {
             return {...state, msg:action.msg};
         case LOAD_DATA:
             return {...state, ...action.payload};
+        case LOGOUT:
+            return {...initState, redirectTo:'/login'};
         default:
             return state
     }
@@ -35,9 +38,15 @@ function errorMsg(msg) {
 function handleSuccess(data) {
     return {type:AUTH_SUCCESS, payload: data}
 }
+
 //用于查询是否登录之后设置state
 export function loadData(userinfo){
     return { type:LOAD_DATA, payload:userinfo}
+}
+
+//退出登录
+export function logout() {
+    return {type: LOGOUT}
 }
 
 
@@ -57,12 +66,9 @@ export function update(obj) {
 
 //注册
 export function register(obj) {
-    const {phone, password, rPassword, userType}= obj;
+    const {phone, password, userType}= obj;
     if(!phone || !password){
         return errorMsg('用户名或密码不能为空');
-    }
-    if(password !== rPassword){
-        return errorMsg('两次密码不一致！');
     }
     return dispatch =>{
         axios.post('/user/register', {phone,password,userType}).then(res=>{

@@ -1,9 +1,10 @@
 /*
  * 判断用户是否登录
- * @author magical
+ * @Author: magical
+ * @Data: 2018-01-25
  */
 
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import { withRouter} from 'react-router-dom';
@@ -14,15 +15,18 @@ import {loadData} from '../../redux/user.redux';
     null,
     {loadData}
 )
-class Auth extends Component{
+export default class LoginFlag extends Component{
     componentDidMount(){
-        //排除登录，注册页
-        const publicPath = ['/login','/register'];
-        const pathname = this.props.location.pathname;
+        //排除登录，注册页,找回密码
+        const ignorePath = ['/login','/register','/findPsw'];
+        const {pathname} = this.props.location;
 
-        if (publicPath.indexOf(pathname)>-1){
+        if (ignorePath.includes(pathname)){
             return false
         }
+        // 如果当前页面不是我们忽略的页面， 就去查询登录状态
+        // 登录了 ->  拿到用户信息存在本地state
+        // 未登录 ->  跳转登录
         axios.get('/user/info').then((res)=>{
             if(res.status === 200){
                 if(res.data.code === 0){
@@ -34,8 +38,6 @@ class Auth extends Component{
         });
     }
     render(){
-        return <p style={{display:'none'}}>sdd</p>
+        return null
     }
 }
-
-export default Auth

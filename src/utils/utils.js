@@ -4,6 +4,8 @@
  * @Date: 2017-11-14 15:32:24
  */
 
+import cookie from './cookie/cookie';  //处理cookie
+
 class Utils {
 
     /**
@@ -26,7 +28,23 @@ class Utils {
             url += 'info';
         }
         return url
-    }
+    };
+
+    /**
+     * 设置cookie
+     */
+    steCookie = cookie.setCookie;
+
+    /**
+     * 获取cookie
+     */
+    getCookie = cookie.getCookie;
+
+    /**
+     * 删除cookie
+     */
+    delCookie = cookie.delCookie;
+
 
 
 }

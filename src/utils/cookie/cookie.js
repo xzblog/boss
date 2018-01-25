@@ -15,7 +15,7 @@ class Cookie {
         const exp = new Date();
         days = days || 365;
         exp.setTime(exp.getTime() + (days * 24 * 60 * 60 * 1000));
-        document.cookie = `${name}=${decodeURIComponent(value)};expires=${exp.toGMTString()};path=/`;
+        document.cookie = `${name}=${decodeURIComponent(value)};expires=${exp.toUTCString()};path=/`;
         return this;
     }
 
@@ -42,7 +42,7 @@ class Cookie {
         exp.setTime(exp.getTime() - 1);
         const cval = this.getCookie(name);
         if (cval != null) {
-            document.cookie = `${name}=${cval};expires=${exp.toGMTString()}`;
+            document.cookie = `${name}=${cval};expires=${exp.toUTCString()}`;
         }
         return this;
     }
