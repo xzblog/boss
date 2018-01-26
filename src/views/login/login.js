@@ -39,7 +39,7 @@ class Login extends Component{
             });
         }
         this.setState({
-            phone:T.delSpace(value),
+            phone:value,
         });
     };
 
@@ -52,7 +52,9 @@ class Login extends Component{
     //登录
     handleSubmit(){
         const {phone, password} = this.state;
-        this.props.login({phone, password})
+        this.props.login({
+            phone:T.delSpace(phone),
+            password})
     }
 
     render(){
@@ -64,6 +66,7 @@ class Login extends Component{
                 <div className="logo">
                     <img className='app-logo' src={LogoImg} alt="logo"/>
                 </div>
+                {this.props.msg ? <p style={{color:'red'}}>{this.props.msg}</p> : null }
                 <WingBlank size='lg'>
                     <InputItem
                         type="phone"

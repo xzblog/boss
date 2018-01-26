@@ -36,8 +36,7 @@ export default class Person extends Component{
 
         return props.userName ? (
             <div className='person'>
-                {/*根据用户类型展示不同内容*/}
-                {props.userType === 'genius' ? (
+                {/*根据用户类型展示不同内容 待完善*/}
                     <div className='genius'>
                         <div className='person-top'>
                             <div className='top-left'>
@@ -93,11 +92,6 @@ export default class Person extends Component{
                             </div>
                         </div>
                     </div>
-                ):(
-                    <div className='boss'>
-                        <p>用户类型为boss，展示类容还在构思</p>
-                    </div>
-                )}
 
 
                 <WhiteSpace />

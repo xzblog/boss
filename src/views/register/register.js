@@ -5,7 +5,7 @@
  */
 
 import  React, {Component} from 'react';
-import { WingBlank, WhiteSpace, InputItem, Button, Radio, Toast} from 'antd-mobile';
+import { WingBlank, WhiteSpace, InputItem, Button, Radio} from 'antd-mobile';
 import {connect} from 'react-redux';
 import {Redirect, Link} from 'react-router-dom';
 import {register} from '../../redux/user.redux';
@@ -26,25 +26,25 @@ class Register extends Component{
         userType: 'genius'
     };
 
-    handleSubmit(){
+    handleSubmit = () => {
         const {phone, password, userType} = this.state;
         this.props.register({
             phone: T.delSpace(phone) ,
             password: password,
             userType: userType
         })
-    }
+    };
 
     render(){
         return(
             <div>
                 {this.props.redirectTo ? <Redirect to= {this.props.redirectTo} /> : null}
-                {/*{this.props.msg ? Toast.show(this.props.msg) : null}*/}
                 <Link to='/login' style={{position: 'absolute', top: '0.2rem',right: '0.2rem'}}>已有账号</Link>
 
                 <div className="logo" style={{height:'2.4rem'}}>
                     <img className='app-logo' src={LogoImg} alt="logo"/>
                 </div>
+                {this.props.msg ? <p style={{color:'red'}}>{this.props.msg}</p> : null}
                 <WingBlank>
                     <InputItem
                         type="phone"
@@ -72,7 +72,7 @@ class Register extends Component{
                     <WhiteSpace/>
                     <WhiteSpace/>
                     <WhiteSpace/>
-                    <Button onClick={this.handleSubmit.bind(this)}>立即注册</Button>
+                    <Button onClick={this.handleSubmit}>立即注册</Button>
                 </WingBlank>
 
             </div>
