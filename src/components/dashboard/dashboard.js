@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Switch, Route} from 'react-router-dom';
+import {replyMsg, getMsgList} from "../../redux/chat.redux";
 
 import Navigator from '../navigator/navigator'
 import Genius from '../../views/genius/genius';
@@ -14,10 +15,16 @@ import Msg from '../../views/msg/msg';
 import Person from '../../views/person/person';
 
 @connect(
-    state => state
+    state => state,
+    {replyMsg, getMsgList}
 )
 
 export default class Dashboard extends Component{
+    componentDidMount(){
+        if(!this.props.chat.msg.length){
+            this.props.getMsgList();
+        }
+    }
     render(){
         const navList = [{
             component:Genius, url:'/genius',  icon:'home', text:'职位', hide: this.props.user.userType === 'boss'

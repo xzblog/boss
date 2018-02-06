@@ -1,0 +1,53 @@
+.fixed-top{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.msg-list{
+    margin: 0.5rem 0;
+    overflow-y:auto;
+    ul{
+        padding: 0 0.1rem;
+        li{
+            min-height: 0.38rem;
+            overflow: hidden;
+            margin-top: 0.1rem;
+
+            .avatar{
+                width: 0.38rem;
+                height: 0.38rem;
+                border: 1px solid #ccc;
+                border-radius: 50%;
+                display: inline-block;
+                margin-right: 0.1rem;
+                vertical-align: top;
+            }
+            .cont{
+                display: inline-block;
+                line-height: 0.38rem;
+                border: 1px solid #e2e2e2;
+                border-radius: 8px;
+                padding: 0 0.1rem;
+            }
+
+            &.from-me{
+                text-align: right;
+                .avatar{
+                    float: right;
+                    margin-left: 0.1rem;
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}
+
+//修改antd的样式
+.am-grid.am-grid-square .am-grid-item .am-grid-item-inner-content .am-grid-icon {
+    display: none;
+}
+.am-grid .am-flexbox .am-flexbox-item .am-grid-item-content .am-grid-item-inner-content .am-grid-text {
+    margin-top: 0;
+    font-size: 16px;
+    color: #000;
+}

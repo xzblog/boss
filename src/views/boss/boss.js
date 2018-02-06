@@ -13,6 +13,9 @@ export default class Boss extends Component{
     componentDidMount(){
         this.props.getList('genius');
     }
+    handleClick(v){
+        this.props.history.push(`/chat/${v._id}`);
+    }
     render(){
         const list = this.props.list.userList;
         return(
@@ -22,7 +25,10 @@ export default class Boss extends Component{
                     <WhiteSpace size="md"/>
                     {
                         list.length ? list.map((v, i)=>(
-                            <Card key={i}>
+                            <Card
+                                key={i}
+                                onClick={()=>{this.handleClick(v)}}
+                            >
                                 <Card.Header
                                     title={v.userName}
                                     thumb="https://cloud.githubusercontent.com/assets/1698185/18039916/f025c090-6dd9-11e6-9d86-a4d48a1bf049.png"

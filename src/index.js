@@ -16,6 +16,7 @@ import LoginFlag from './components/loginflag/loginflag';  //判断登录页面
 import BossInfo from './views/bossinfo/bossinfo';          //boss完善信息
 import GeniusInfo from './views/geniusinfo/geniusinfo';    //牛人完善信息
 import Dashboard from './components/dashboard/dashboard';
+import Chat from './components/chat/chat';
 
 
 
@@ -36,6 +37,7 @@ ReactDOM.render(
                    <Route path='/register' component={Register}/>
                    <Route path='/geniusinfo' component={GeniusInfo}/>
                    <Route path='/bossinfo' component={BossInfo}/>
+                   <Route path='/chat/:user' component={Chat}/>
                    <Route component={Dashboard}/>
                </Switch>
            </div>

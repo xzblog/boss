@@ -4,6 +4,8 @@ const utils = require('utility');  //加密
 
 //用户模型
 const User = model.getModel('user');
+//聊天模型
+const Chat = model.getModel('chat');
 
 //自定义加密方式
 const encrypt = function (pwd) {
@@ -28,6 +30,40 @@ Router.get('/list', function (req, res) {
         });
     })
 });
+
+//查询消息列表
+Router.get('/msglist', function (req, res) {
+    const {userId} = req.cookies;
+    User.find({}, function (e, userdoc) {
+
+        let users = {};
+        userdoc.forEach(v=>{
+            users[v._id] = {name:v.userName, avatar:v.avatar}
+        });
+        Chat.find({'$or':[{from:userId},{to:userId}]},function(err,doc){
+            if (!err) {
+                return res.json({code:0,msg:doc, users:users})
+            }
+        })
+    })
+});
+
+//阅读消息
+Router.post('/readmsg', function(req, res){
+    const userId = req.cookies.userId;
+    const {from} = req.body;
+    Chat.update(
+        {from,to:userId},
+        {'$set':{read:true}},
+        {'multi':true},
+        function(err,doc){
+            console.log(doc)
+            if (!err) {
+                return res.json({code:0,num:doc.nModified})
+            }
+            return res.json({code:1,msg:'修改失败'})
+        })
+})
 
 //完善用户信息
 Router.post('/update', function (req, res) {
@@ -84,7 +120,6 @@ Router.post('/login', function (req,res) {
         });
     })
 });
-
 
 
 // 注册

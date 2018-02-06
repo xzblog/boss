@@ -19,7 +19,7 @@ class Utils {
     /**
      * 判断用户是否完善信息，然后根据用户类型跳转不同页面
      * @param userType
-     * @param avatar
+     * @param userName
      * @returns {string}
      */
     getRedirectPath = ({userType, userName}) => {
@@ -28,6 +28,16 @@ class Utils {
             url += 'info';
         }
         return url
+    };
+
+    /**
+     * 排序组合
+     * @param userId
+     * @param targetId
+     * @returns {string}
+     */
+    getChatId = (userId, targetId) => {
+        return [userId, targetId].sort().join('_')
     };
 
     /**

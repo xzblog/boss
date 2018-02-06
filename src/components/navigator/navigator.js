@@ -4,11 +4,15 @@
  */
 
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import './navigator.scss';
 
 @withRouter
+@connect(
+    state=> state.chat
+)
 
 export default class Navigator extends Component{
     // 用于检测传入的值得类型
@@ -29,6 +33,7 @@ export default class Navigator extends Component{
                       key={i}
                       className={pathname === nav.url ? 'active':'' }
                       data-index={i}>
+                      {nav.url ==='/msg'&&this.props.unread!==0 ? <span className='badge'>{this.props.unread}</span>: null}
                     <i className={nav.icon}> </i>
                     <p>{nav.text}</p>
                 </Link>);

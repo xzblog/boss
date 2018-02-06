@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 // 创建schema,并用model导出模型
 
 const models = {
+    //用户表
     user:{
         // 手机号
         phone: {
@@ -27,6 +28,7 @@ const models = {
         //头像
         avatar: {
             type: String,
+            default:'pig'
         },
 
         // boss专属
@@ -60,6 +62,40 @@ const models = {
         desc: {
             type: String,
         }
+    },
+
+    // 聊天表
+    chat: {
+        //聊天的id
+        chatId: {
+            type: String,
+            require: true,
+        },
+        //谁发的
+        from: {
+            type: String,
+            require: true,
+        },
+        //发给谁
+        to: {
+            type: String,
+            require: true,
+        },
+        // 聊天内容
+        cont: {
+            type: String,
+            require: true,
+        },
+        //是否查看
+        read: {
+            type:Boolean,
+            default: false,
+        },
+        //创建时间
+        create_time: {
+            type: Number,
+            default: Date.now(),
+        },
     }
 };
 

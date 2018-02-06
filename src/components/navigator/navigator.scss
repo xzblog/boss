@@ -19,6 +19,23 @@
         flex-direction: column;
         text-align: center;
         color: #333;
+        position: relative;
+
+        .badge{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0.5rem;
+            background-color: #ff5b05;
+            color: #fff;
+            min-width: 0.1rem;
+            min-height: 0.1rem;
+            padding:0.01rem 0.02rem;
+            border-radius: 50%;
+            font-size: 0.1rem;
+        }
 
         i{
             fill: currentColor;

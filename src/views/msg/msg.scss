@@ -1,0 +1,28 @@
+.chat-item{
+    padding: 0.1rem;
+    background-color: #fff;
+    border-top: 1px solid #f6f6f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .avatar{
+        display: inline-block;
+        width: 0.45rem;
+        height: 0.45rem;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        margin-right: 0.1rem;
+    }
+    .main{
+        width: 80%;
+        .name{
+            font-size: 0.18rem;
+            color: #333;
+            margin-bottom: 0.1rem;
+        }
+        .cont{
+            font-size: 0.14rem;
+            color: #999;
+        }
+    }
+}
