@@ -15,8 +15,8 @@ import Register from './views/register/register';          //注册
 import LoginFlag from './components/loginflag/loginflag';  //判断登录页面
 import BossInfo from './views/bossinfo/bossinfo';          //boss完善信息
 import GeniusInfo from './views/geniusinfo/geniusinfo';    //牛人完善信息
-import Dashboard from './components/dashboard/dashboard';
-import Chat from './components/chat/chat';
+import Dashboard from './components/dashboard/dashboard';  //首页，资讯，消息，个人中心
+import Chat from './components/chat/chat';                 //聊天详情
 
 
 

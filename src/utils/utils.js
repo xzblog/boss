@@ -7,6 +7,15 @@
 import cookie from './cookie/cookie';  //处理cookie
 
 class Utils {
+    /**
+     * 数组去重
+     * @param arr
+     * @returns {any[]}
+     */
+    distinct = (arr) => {
+        // return Array.from(new Set(arr));
+        return [...new Set(arr)];
+    };
 
     /**
      * 去空格

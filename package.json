@@ -62,7 +62,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "server": "nodemon server/app.js"
   },
   "devDependencies": {
     "babel-plugin-import": "^1.6.3",
